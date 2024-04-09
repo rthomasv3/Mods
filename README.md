@@ -16,32 +16,32 @@ Save scummer and save manager that works with many games. Backs up your saves at
 
 Adds a counter indicating the Dragonsplague level on any infected pawns in your party.
 
-* [Nexus](https://www.nexusmods.com/dragonsdogma2/mods/399)
-* [GitHub](https://github.com/rthomasv3/Mods/tree/main/DD2/Dragonsplauge%20Counter)
+* https://www.nexusmods.com/dragonsdogma2/mods/399
+* https://github.com/rthomasv3/Mods/tree/main/DD2/Dragonsplauge%20Counter
 
 
 ### Pawn of Holding
 
 Turns your main pawn into a bag of holding.
 
-* [Nexus](https://www.nexusmods.com/dragonsdogma2/mods/403)
-* [GitHub](https://github.com/rthomasv3/Mods/tree/main/DD2/Pawn%20of%20Holding)
+* https://www.nexusmods.com/dragonsdogma2/mods/403
+* https://github.com/rthomasv3/Mods/tree/main/DD2/Pawn%20of%20Holding
 
 
 ### Dragonsplague System Removal
 
 Removes the Dragonsplague system from your game.
 
-* [Nexus](https://www.nexusmods.com/dragonsdogma2/mods/416)
-* [GitHub](https://github.com/rthomasv3/Mods/tree/main/DD2/Dragonsplauge%20System%20Removal)
+* https://www.nexusmods.com/dragonsdogma2/mods/416
+* https://github.com/rthomasv3/Mods/tree/main/DD2/Dragonsplauge%20System%20Removal
 
 
 ### Teleportation
 
 Instantly teleport your party to key locations around the map without the need for a Ferrystone or Portcrystal. Also works for NPCs in escort quests - just pick them up and teleport.
 
-* [Nexus](https://www.nexusmods.com/dragonsdogma2/mods/444)
-* [GitHub](https://github.com/rthomasv3/Mods/tree/main/DD2/Teleportation)
+* https://www.nexusmods.com/dragonsdogma2/mods/444
+* https://github.com/rthomasv3/Mods/tree/main/DD2/Teleportation
 
 
 
@@ -51,7 +51,7 @@ Instantly teleport your party to key locations around the map without the need f
 
 Ported from the RE4 version. Dynamic weapon stat changes with many extra options and modular profiles. The last weapon mod you'll ever need. Includes live stat editor.
 
-* [Nexus](https://www.nexusmods.com/residentevil22019/mods/1391)
+* https://www.nexusmods.com/residentevil22019/mods/1391
 
 
 
@@ -59,7 +59,7 @@ Ported from the RE4 version. Dynamic weapon stat changes with many extra options
 
 Ported from the RE4 version. Dynamic weapon stat changes with many extra options and modular profiles. The last weapon mod you'll ever need. Includes live stat editor.
 
-* [Nexus](https://www.nexusmods.com/residentevil32020/mods/894)
+* https://www.nexusmods.com/residentevil32020/mods/894
 
 
 
@@ -67,5 +67,5 @@ Ported from the RE4 version. Dynamic weapon stat changes with many extra options
 
 Dynamic weapon stat changes with many extra options and modular profiles. The last weapon mod you'll ever need. Includes live stat editor.
 
-* [Nexus](https://www.nexusmods.com/residentevil42023/mods/848)
-* [GitHub](https://github.com/MrBoobieBuyer/DynamicWeaponProfiles)
+* https://www.nexusmods.com/residentevil42023/mods/848
+* https://github.com/MrBoobieBuyer/DynamicWeaponProfiles
