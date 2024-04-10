@@ -18,52 +18,52 @@ end
 
 ---Returns the dot product between self and other.
 ---@param other Vector2f
----@return number|nil
+---@return number
 function Vector2f:dot(other) end
 
 ---Returns the cross product between self and other.
 ---@param other Vector2f
----@return number|nil
+---@return number
 function Vector2f:cross(other) end
 
 ---Returns the length of self.
----@return number|nil
+---@return number
 function Vector2f:length() end
 
 ---Normalizes self. Nothing is returned.
 function Vector2f:normalize() end
 
 ---Returns the normalization of self.
----@return Vector2f|nil
+---@return Vector2f
 function Vector2f:normalized() end
 
 ---Converts self to a Vector3f. Not available if self is already a Vector3f.
----@return Vector3f|nil
+---@return Vector3f
 function Vector2f:to_vec3() end
 
 ---Converts self to a Vector4f. Not available if self is already a Vector4f.
----@return Vector4f|nil
+---@return Vector4f
 function Vector2f:to_vec4() end
 
 ---Returns the refraction of self over normal with the given eta.
 ---@param normal Vector2f
 ---@param eta number
----@return Vector2f|nil
+---@return Vector2f
 function Vector2f:refract(normal, eta) end
 
 ---Returns the refraction of self over normal with the given eta.
 ---@param other Vector2f
 ---@param t number
----@return Vector2f|nil
+---@return Vector2f
 function Vector2f:lerp(other, t) end
 
 ---Converts self to a Matrix4x4f. Treats self as the forward vector.
----@return Matrix4x4f|nil
+---@return Matrix4x4f
 function Vector2f:to_mat() end
 
 ---Converts self to a Quaternion. Treats self as the forward vector.
 ---Equivalent to self:to_mat():to_quat().
----@return Quaternion|nil
+---@return Quaternion
 function Vector2f:to_quat() end
 
 -- END Vector2f
@@ -82,52 +82,52 @@ end
 
 ---Returns the dot product between self and other.
 ---@param other Vector3f
----@return number|nil
+---@return number
 function Vector3f:dot(other) end
 
 ---Returns the cross product between self and other.
 ---@param other Vector3f
----@return number|nil
+---@return number
 function Vector3f:cross(other) end
 
 ---Returns the length of self.
----@return number|nil
+---@return number
 function Vector3f:length() end
 
 ---Normalizes self. Nothing is returned.
 function Vector3f:normalize() end
 
 ---Returns the normalization of self.
----@return Vector3f|nil
+---@return Vector3f
 function Vector3f:normalized() end
 
 ---Converts self to a Vector2f. Not available if self is already a Vector2f.
----@return Vector2f|nil
+---@return Vector2f
 function Vector3f:to_vec2() end
 
 ---Converts self to a Vector4f. Not available if self is already a Vector4f.
----@return Vector4f|nil
+---@return Vector4f
 function Vector3f:to_vec4() end
 
 ---Returns the refraction of self over normal with the given eta.
 ---@param normal Vector3f
 ---@param eta number
----@return Vector3f|nil
+---@return Vector3f
 function Vector3f:refract(normal, eta) end
 
 ---Returns the refraction of self over normal with the given eta.
 ---@param other Vector3f
 ---@param t number
----@return Vector3f|nil
+---@return Vector3f
 function Vector3f:lerp(other, t) end
 
 ---Converts self to a Matrix4x4f. Treats self as the forward vector.
----@return Matrix4x4f|nil
+---@return Matrix4x4f
 function Vector3f:to_mat() end
 
 ---Converts self to a Quaternion. Treats self as the forward vector.
 ---Equivalent to self:to_mat():to_quat().
----@return Quaternion|nil
+---@return Quaternion
 function Vector3f:to_quat() end
 
 -- END Vector3f
@@ -147,52 +147,52 @@ end
 
 ---Returns the dot product between self and other.
 ---@param other Vector4f
----@return number|nil
+---@return number
 function Vector4f:dot(other) end
 
 ---Returns the cross product between self and other.
 ---@param other Vector4f
----@return number|nil
+---@return number
 function Vector4f:cross(other) end
 
 ---Returns the length of self.
----@return number|nil
+---@return number
 function Vector4f:length() end
 
 ---Normalizes self. Nothing is returned.
 function Vector4f:normalize() end
 
 ---Returns the normalization of self.
----@return Vector4f|nil
+---@return Vector4f
 function Vector4f:normalized() end
 
 ---Converts self to a Vector2f. Not available if self is already a Vector2f.
----@return Vector2f|nil
+---@return Vector2f
 function Vector4f:to_vec2() end
 
 ---Converts self to a Vector3f. Not available if self is already a Vector3f.
----@return Vector3f|nil
+---@return Vector3f
 function Vector4f:to_vec3() end
 
 ---Returns the refraction of self over normal with the given eta.
 ---@param normal Vector4f
 ---@param eta number
----@return Vector4f|nil
+---@return Vector4f
 function Vector4f:refract(normal, eta) end
 
 ---Returns the refraction of self over normal with the given eta.
 ---@param other Vector4f
 ---@param t number
----@return Vector4f|nil
+---@return Vector4f
 function Vector4f:lerp(other, t) end
 
 ---Converts self to a Matrix4x4f. Treats self as the forward vector.
----@return Matrix4x4f|nil
+---@return Matrix4x4f
 function Vector4f:to_mat() end
 
 ---Converts self to a Quaternion. Treats self as the forward vector.
 ---Equivalent to self:to_mat():to_quat().
----@return Quaternion|nil
+---@return Quaternion
 function Vector4f:to_quat() end
 
 -- END Vector4f
@@ -235,11 +235,11 @@ function Matrix4x4f:identity()
 end
 
 ---Returns a Quaternion built from self.
----@return Quaternion|nil
+---@return Quaternion
 function Matrix4x4f:to_quat() end
 
 ---Returns a Matrix4x4f that is the inverse of self.
----@return Matrix4x4f|nil
+---@return Matrix4x4f
 function Matrix4x4f:inverse() end
 
 ---Inverts self. Returns nothing.
@@ -248,11 +248,11 @@ function Matrix4x4f:invert() end
 ---Returns the linear interpolation between self and other with the given t.
 ---@param other Matrix4x4f
 ---@param t number
----@return Matrix4x4f|nil
+---@return Matrix4x4f
 function Matrix4x4f:interpolate(other, t) end
 
 ---Extracts the rotation matrix from self.
----@return Matrix4x4f|nil
+---@return Matrix4x4f
 function Matrix4x4f:matrix_rotation() end
 
 -- END Matrix4x4f
@@ -277,15 +277,15 @@ function Quaternion:identity()
 end
 
 ---Returns a Matrix4x4f built from self.
----@return Matrix4x4f|nil
+---@return Matrix4x4f
 function Quaternion:to_mat4() end
 
 ---Returns a Vector3f representing the Euler angles for this Quaternion.
----@return Vector3f|nil
+---@return Vector3f
 function Quaternion:to_euler() end
 
 ---Returns a Quaternion that is the inverse of self.
----@return Quaternion|nil
+---@return Quaternion
 function Quaternion:inverse() end
 
 ---Inverts self. Returns nothing.
@@ -295,26 +295,26 @@ function Quaternion:invert() end
 function Quaternion:normalize() end
 
 ---Returns a Quaternion that is the normalization of self.
----@return Quaternion|nil
+---@return Quaternion
 function Quaternion:normalized() end
 
 ---Returns a Quaternion that is the spherical linear interpolation between self and other with the given t.
 ---@param other Quaternion
 ---@param t number
----@return Quaternion|nil
+---@return Quaternion
 function Quaternion:slerp(other, t) end
 
 ---Returns the dot product between self and other.
 ---@param other Quaternion
----@return number|nil
+---@return number
 function Quaternion:dot(other) end
 
 ---Returns the length of self.
----@return number|nil
+---@return number
 function Quaternion:length() end
 
 ---Returns a Quaternion that is the conjugate of self.
----@return Quaternion|nil
+---@return Quaternion
 function Quaternion:conjugate() end
 
 -- END Quaternion
@@ -341,7 +341,7 @@ function SystemArray:get_elements() end
 function SystemArray:get_element(index) end
 
 ---Returns the size of the array.
----@return number|nil
+---@return number
 function SystemArray:get_size() end
 
 ---@class System.SByte
@@ -382,7 +382,7 @@ System.Type = {}
 ---@class REFeild
 REFeild = {}
 
----@return string|nil
+---@return string
 function REFeild:getName() end
 
 -- END REFeild
@@ -392,22 +392,22 @@ RETypeDefinition = {}
 
 ---Returns the full name of the class.
 ---Equivalent to concatenating self:get_namespace() and self:get_name().
----@return string|nil
+---@return string
 function RETypeDefinition:get_full_name() end
 
 ---Returns the type name. Does not contain namespace.
----@return string|nil
+---@return string
 function RETypeDefinition:get_name() end
 
 ---Returns the namespace this type is contained in.
----@return string|nil
+---@return string
 function RETypeDefinition:get_namespace() end
 
 ---Returns an REMethodDefinition. To be used in things like sdk.hook.
 ---The full function prototype can be supplied to get an overloaded function.
 ---Example: foo:get_method("Bar(System.Int32, System.Single)")
 ---@param name string
----@return RETypeDefinition|nil
+---@return REMethodDefinition
 function RETypeDefinition:get_method(name) end
 
 ---Returns a list of REMethodDefinition
@@ -417,7 +417,7 @@ function RETypeDefinition:get_methods() end
 
 ---Returns an REField.
 ---@param name string
----@return REFeild|nil
+---@return REFeild
 function RETypeDefinition:get_field(name) end
 
 ---Returns a list of REField
@@ -429,23 +429,23 @@ function RETypeDefinition:get_fields() end
 ---@class REMethodDefinition
 REMethodDefinition = {}
 
----@return string|nil
+---@return string
 function REMethodDefinition:get_name() end
 
 ---Returns an RETypeDefinition*.
----@return RETypeDefinition|nil
+---@return RETypeDefinition
 function REMethodDefinition:get_return_type() end
 
 ---Returns a void*. Pointer to the actual function in memory.
----@return function|nil
+---@return function
 function REMethodDefinition:get_function() end
 
 ---Returns an RETypeDefinition* corresponding to the class/type that declared this method.
----@return RETypeDefinition|nil
+---@return RETypeDefinition
 function REMethodDefinition:get_declaring_type() end
 
 ---Returns the number of parameters required to call the function.
----@return number|nil
+---@return number
 function REMethodDefinition:get_num_params() end
 
 ---Returns a list of RETypeDefinition
@@ -457,7 +457,7 @@ function REMethodDefinition:get_param_types() end
 function REMethodDefinition:get_param_names() end
 
 ---Returns whether this method is static or not.
----@return boolean|nil
+---@return boolean
 function REMethodDefinition:is_static() end
 
 ---Equivalent to calling obj:call(args...)
@@ -485,7 +485,7 @@ REManagedObject = {}
 function REManagedObject:call(method_name, ...) end
 
 ---Returns an RETypeDefinition*.
----@return RETypeDefinition|nil
+---@return RETypeDefinition
 function REManagedObject:get_type_definition() end
 
 ---Return type is dependent on the field type.
@@ -497,10 +497,10 @@ function REManagedObject:get_field(name) end
 ---@param value any
 function REManagedObject:set_field(name, value) end
 
----@return number|nil
+---@return number
 function REManagedObject:get_address() end
 
----@return number|nil
+---@return number
 function REManagedObject:get_reference_count() end
 
 ---Experimental API to deserialize data into self.
@@ -539,32 +539,32 @@ function REManagedObject:force_release() end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function REManagedObject:read_byte(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function REManagedObject:read_short(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function REManagedObject:read_dword(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function REManagedObject:read_qword(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function REManagedObject:read_float(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function REManagedObject:read_double(offset) end
 
 ---Dangerous Method
@@ -616,7 +616,7 @@ end
 function ValueType:call(name, ...) end
 
 ---@param name string
----@return string|nil
+---@return string
 function ValueType:get_field(name) end
 
 ---Note that this does not change anything in-game. ValueType is just a local copy.
@@ -625,40 +625,40 @@ function ValueType:get_field(name) end
 ---@param value any
 function ValueType:set_field(name, value) end
 
----@return number|nil
+---@return number
 function ValueType:address() end
 
----@return RETypeDefinition|nil
+---@return RETypeDefinition
 function ValueType:get_type_definition() end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function ValueType:read_byte(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function ValueType:read_short(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function ValueType:read_dword(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function ValueType:read_qword(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function ValueType:read_float(offset) end
 
 ---Dangerous Method
 ---@param offset any
----@return number|nil
+---@return number
 function ValueType:read_double(offset) end
 
 ---Dangerous Method
@@ -1242,11 +1242,11 @@ ImGuizmoOperation =
    SCALE_YU         = (1 << 12),
    SCALE_ZU         = (1 << 13),
 
-   TRANSLATE = ImGuizmoOperation.TRANSLATE_X | ImGuizmoOperation.TRANSLATE_Y | ImGuizmoOperation.TRANSLATE_Z,
-   ROTATE = ImGuizmoOperation.ROTATE_X | ImGuizmoOperation.ROTATE_Y | ImGuizmoOperation.ROTATE_Z | ImGuizmoOperation.ROTATE_SCREEN,
-   SCALE = ImGuizmoOperation.SCALE_X | ImGuizmoOperation.SCALE_Y | ImGuizmoOperation.SCALE_Z,
-   SCALEU = ImGuizmoOperation.SCALE_XU | ImGuizmoOperation.SCALE_YU | ImGuizmoOperation.SCALE_ZU,
-   UNIVERSAL = ImGuizmoOperation.TRANSLATE | ImGuizmoOperation.ROTATE | ImGuizmoOperation.SCALEU
+   TRANSLATE = 1 << 0 | 1 << 1 | 1 << 2,
+   ROTATE = 1 << 3 | 1 << 4 | 1 << 5 | 1 << 6,
+   SCALE = 1 << 7 | 1 << 8 | 1 << 9,
+   SCALEU = 1 << 11 | 1 << 12 | 13,
+   UNIVERSAL = 1 << 0 | 1 << 1 | 1 << 2 | 1 << 3 | 1 << 4 | 1 << 5 | 1 << 6 | 1 << 11 | 1 << 12 | 13
 }
 
 ---@class ImGuizmoMode

@@ -223,7 +223,7 @@ local function sdk_get_primary_camera()
 end
 
 --- Creates a hook for method_definition, intercepting all incoming calls the game makes to it.
---- ignore_jmp - Skips trying to follow the first jmp in the function. Defaults to false.
+--- ignore_jmp is false.
 --- Using pre_function and post_function, the behavior of these functions can be modified.
 --- NOTE: Some native methods may not be able to be hooked with this, e.g. if they are just a  wrapper over the native function. Some additional work will need to be done from our end to make those work.
 --- pre_function and post_function looks like so:
@@ -261,12 +261,28 @@ end
 ---     return sdk.float_to_ptr(5.0)
 --- end
 --- sdk.hook(sdk.find_type_definition(&quot;via.Scene&quot;):get_method(&quot;get_TimeScale&quot;), on_pre_get_timescale, on_post_get_timescale)
-local function sdk_hook(method_definition, pre_func, post_func, ignore_jmp)
+---@param method_definition REMethodDefinition
+---@param pre_func function
+---@param post_func function
+local function sdk_hook(method_definition, pre_func, post_func)
+    sdk.hook(method_definition, pre_func, post_func, false)
+end
+
+---@param method_definition string
+---@param pre_func function
+---@param post_func function
+---@param ignore_jmp boolean
+local function sdk_hook_jmp(method_definition, pre_func, post_func, ignore_jmp)
     sdk.hook(method_definition, pre_func, post_func, ignore_jmp)
 end
 
+
 --- Similar to sdk.hook but hooks on a per-object basis instead, instead of hooking the function globally for all objects.
 --- Only works if the target method is a virtual method.
+---@param obj REManagedObject|any
+---@param method string
+---@param pre function
+---@param post function
 local function sdk_hook_vtable(obj, method, pre, post)
     sdk.hook_vtable(obj, method, pre, post)
 end
@@ -376,6 +392,7 @@ return {
     set_native_field = sdk_set_native_field,
     get_primary_camera = sdk_get_primary_camera,
     hook = sdk_hook,
+    sdk_hook_jmp = sdk_hook_jmp,
     hook_vtable = sdk_hook_vtable,
     is_managed_object = sdk_is_managed_object,
     to_managed_object = sdk_to_managed_object,
