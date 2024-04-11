@@ -44,6 +44,14 @@ Instantly teleport your party to key locations around the map without the need f
 * https://github.com/rthomasv3/Mods/tree/main/DD2/Teleportation
 
 
+### REFramework Lua API
+
+Lua wrapper for REFramework API methods, allowing for code autocomplete (IntelliSense), inline documentation, and detailed error messages.
+
+* https://www.nexusmods.com/dragonsdogma2/mods/541
+* https://github.com/rthomasv3/Mods/tree/main/REFrameworkAPI
+
+
 
 ## Resident Evil 2
 
