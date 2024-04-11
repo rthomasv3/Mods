@@ -599,6 +599,41 @@ function REManagedObject:write_double(offset, value) end
 
 -- END REManagedObject
 
+---@class REComponent
+REComponent = {}
+setmetatable(REComponent, {__index = REManagedObject})
+
+---END REComponent
+
+---@class RETransform
+RETransform = { }
+setmetatable(RETransform, {__index = REComponent})
+
+---Returns a Matrix4x4f. Returns the reference pose (T-pose) for a specific joint relative to the transform's origin (in local transform space).
+---@param joint any
+---@return Matrix4x4f
+function RETransform:calculate_base_transform(joint) end
+
+---Sets the world position (Vector4f) of the transform.
+---When no_dirty is true, the transform and its parents will not be marked as dirty. This seems to be necessary when the scene is locked, because parent transforms will end up getting stuck.
+---@param position Vector4f
+---@param no_dirty boolean
+function RETransform:set_position(position, no_dirty) end
+
+---Sets the world rotation (Quaternion) of the transform.
+---@param rotation Quaternion
+function RETransform:set_rotation(rotation) end
+
+---Gets the world position (Vector4f) of the transform.
+---@return Vector4f
+function RETransform:get_position() end
+
+---Gets the world rotation (Quaternion) of the transform.
+---@return Quaternion
+function RETransform:get_rotation() end
+
+--- END RETransform
+
 ---@class ValueType
 ValueType = { type = RETypeDefinition, data = {} }
 

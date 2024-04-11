@@ -78,7 +78,7 @@ local function merge_tables(table_a, table_b, no_overwrite)
     return table_a
 end
 
----Returns the static fields as a table
+---Returns the static fields as a table (generate_enum)
 ---@param typename string
 ---@return table
 local function generate_statics(typename)
@@ -87,13 +87,11 @@ local function generate_statics(typename)
 
     if typeDefinition then
         local fields = typeDefinition:get_fields()
-        local enum_string = "\ncase \"" .. typename .. "\":" .. "\n    enum {"
 
         for _, field in ipairs(fields) do
             if field:is_static() then
                 local name = field:get_name()
                 local raw_value = field:get_data(nil)
-                enum_string = enum_string .. "\n        " .. name .. " = " .. tostring(raw_value) .. ","
                 statics[name] = raw_value
             end
         end
@@ -170,6 +168,64 @@ local function vec4_tostring(vec)
     return vecString
 end
 
+-- Gets all components of a game object as a table
+---@param gameObject REManagedObject|any
+---@return table<REComponent>
+local function get_components(gameObject)
+    return gameObject:call("get_Components"):get_elements()
+end
+
+---Find a component contained in a game object by its type name
+---@param gameObject REManagedObject|any
+---@param typeName string
+---@return REComponent|nil
+local function get_component(gameObject, typeName)
+    local component = nil
+
+    local t = sdk.typeof(typeName)
+
+    if t then
+        component = gameObject:call("getComponent(System.Type)", t)
+    end
+
+    return component
+end
+
+---Gets the transform component from a game object
+---@param gameObject REManagedObject|any
+---@return RETransform
+local function get_transform(gameObject)
+    return gameObject:call("get_Transform")
+end
+
+---Type is the "typeof" variant, not the type definition
+---@param type System.Type|any
+---@return table<string>
+local function get_fields_by_type(type)
+    local fieldsTable = {}
+
+    local binding_flags = 32 | 16 | 4 | 8
+    local fields = type:call("GetFields(System.Reflection.BindingFlags)", binding_flags)
+
+    if fields then
+        fields = fields:get_elements()
+
+        for i, field in ipairs(fields) do
+            fieldsTable[i] = field:call("ToString")
+        end
+    end
+
+    return fieldsTable
+end
+
+---Gets the fields for the given object
+---@param object REManagedObject|any
+---@return table<string>
+local function get_fields(object)
+    local object_type = object:call("GetType")
+    return get_fields_by_type(object_type)
+end
+
 return {
     write_valuetype = write_valuetype,
     find_index = find_index,
@@ -181,4 +237,9 @@ return {
     vec2_tostring = vec2_tostring,
     vec3_tostring = vec3_tostring,
     vec4_tostring = vec4_tostring,
+    get_components = get_components,
+    get_component = get_component,
+    get_transform = get_transform,
+    get_fields_by_type = get_fields_by_type,
+    get_fields = get_fields,
 }
