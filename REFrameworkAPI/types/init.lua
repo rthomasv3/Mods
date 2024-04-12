@@ -7,6 +7,7 @@ local RealValueType = ValueType
 
 ---@class Vector2f
 Vector2f = { x = 0.0, y = 0.0 }
+Vector2f = RealVector2f
 
 ---Creates a new Vector2f
 ---@param x number
@@ -70,6 +71,7 @@ function Vector2f:to_quat() end
 
 ---@class Vector3f
 Vector3f = { x = 0.0, y = 0.0, z = 0.0 }
+Vector3f = RealVector3f
 
 ---Creates a new Vector3f
 ---@param x number
@@ -134,6 +136,7 @@ function Vector3f:to_quat() end
 
 ---@class Vector4f
 Vector4f = { x = 0.0, y = 0.0, z = 0.0, w = 0.0 }
+Vector4f = RealVector4f
 
 ---Creates a new Vector4f
 ---@param x number
@@ -199,6 +202,7 @@ function Vector4f:to_quat() end
 
 ---@class Matrix4x4f
 Matrix4x4f = { x1 = 0.0, y1= 0.0, z1= 0.0, w1= 0.0, x2= 0.0, y2= 0.0, z2= 0.0, w2= 0.0, x3= 0.0, y3= 0.0, z3= 0.0, w3= 0.0, x4= 0.0, y4= 0.0, z4= 0.0, w4= 0.0 }
+Matrix4x4f = RealMatrix4x4f
 
 ---Creates a new Matrix4x4f
 ---@return Matrix4x4f
@@ -259,6 +263,7 @@ function Matrix4x4f:matrix_rotation() end
 
 ---@class Quaternion
 Quaternion = { x = 0.0, y = 0.0, z = 0.0, w = 0.0 }
+Quaternion = RealQuaternion
 
 ---Creates a new Quaternion
 ---@param x number
@@ -636,6 +641,7 @@ function RETransform:get_rotation() end
 
 ---@class ValueType
 ValueType = { type = RETypeDefinition, data = {} }
+ValueType = RealValueType
 
 ---Creates a new ValueType
 ---@param typename string
