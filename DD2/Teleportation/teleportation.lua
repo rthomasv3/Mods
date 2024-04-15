@@ -567,7 +567,7 @@ re.on_frame(function()
         imgui.spacing()
         imgui.spacing()
 
-        imgui.begin_table("1", 2, nil, Vector2f.new(325, 100), 10.0)
+        imgui.begin_table("1", 2, 1 << 7, Vector2f.new(325.0, 100.0), 10.0)
         imgui.table_setup_column("Hotkey")
         imgui.table_setup_column("Location")
         imgui.table_headers_row()
@@ -622,6 +622,8 @@ re.on_draw_ui(function ()
         _, SelectedLocationIndex = imgui.combo(" ", SelectedLocationIndex, LocationNames)
 
         imgui.same_line()
+        imgui.spacing()
+        imgui.same_line()
         if imgui.button(" Teleport ") then
             local location
 
@@ -639,9 +641,7 @@ re.on_draw_ui(function ()
 
         imgui.text("Name")
         imgui.push_item_width(190)
-        _, NewLocationName = imgui.input_text(nil, NewLocationName, 256)
-        imgui.same_line()
-        imgui.spacing()
+        _, NewLocationName = imgui.input_text("\t", NewLocationName, 32)
         imgui.same_line()
         if imgui.button("Add Current Location") and NewLocationName ~= "" then
             add_custom_location(NewLocationName)
