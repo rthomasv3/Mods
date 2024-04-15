@@ -756,6 +756,8 @@ re.on_draw_ui(function ()
         _, SelectedLocationIndex = imgui.combo(" ", SelectedLocationIndex, LocationNames)
 
         imgui.same_line()
+        imgui.spacing()
+        imgui.same_line()
         if imgui.button(LabelTexts[6]) then
             local location
 
@@ -773,9 +775,7 @@ re.on_draw_ui(function ()
 
         imgui.text(LabelTexts[7])
         imgui.push_item_width(190)
-        _, NewLocationName = imgui.input_text(nil, NewLocationName, 256)
-        imgui.same_line()
-        imgui.spacing()
+        _, NewLocationName = imgui.input_text("\t", NewLocationName, 32)
         imgui.same_line()
         if imgui.button(LabelTexts[8]) and NewLocationName ~= "" then
             add_custom_location(NewLocationName)
