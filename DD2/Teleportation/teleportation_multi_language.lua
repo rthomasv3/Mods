@@ -33,13 +33,14 @@ local WindowInitialized = false
 local WriteInfoLogs = false
 local RequireTeleportWindowOpen = true
 local PreventFerrystoneUsage = false
+local LoadBeetleLocations = true
+local LoadSeekerLocations = true
 local Language = "EN"
 
 local LocationNames = {}
 local BonusLocationNames = {}
-local BeetleLocationNames = {}
-local SeekerLocationNames = {}
 local CustomLocationNames = {}
+local BonusLocationPositions = {}
 local LabelTexts = {}
 local NewLocationName = nil
 
@@ -430,11 +431,17 @@ local TextLabels = {
 	{ lbl_EN = "Delete Custom Locations",                                  lbl_zh_TW = "刪除自定位置",               lbl_zh_CN = "删除自定位置" }, -- LabelTexts[16]
 	{ lbl_EN = "Be careful here - deleted locations cannot be recovered.", lbl_zh_TW = "注意 - 被刪除的位置無法恢復。", lbl_zh_CN = "注意 - 被删除的位置无法恢复。" }, -- LabelTexts[17]
 	{ lbl_EN = " Delete ",                                                 lbl_zh_TW = " 刪除 ",                    lbl_zh_CN = " 删除 " }, -- LabelTexts[18]
+	{ lbl_EN = "Options",                                                  lbl_zh_TW = "選項",                      lbl_zh_CN = "选项" }, -- LabelTexts[19]
+	{ lbl_EN = "Load Beetle Locations",                                    lbl_zh_TW = "載入金色帝王甲蟲位置",         lbl_zh_CN = "加载金色帝王艳金龟位置" }, -- LabelTexts[20]
+	{ lbl_EN = "Load Seeker Locations",                                    lbl_zh_TW = "載入探求之證位置",            lbl_zh_CN = "加载探求心之证位置" }, -- LabelTexts[21]
 }
 
 local Config = {
     RequireTeleportWindowOpen = RequireTeleportWindowOpen,
+	SelectedLanguageIndex = SelectedLanguageIndex,
     CustomTeleportLocations = {},
+	LoadBeetleLocations = LoadBeetleLocations,
+	LoadSeekerLocations = LoadSeekerLocations,
     Hotkeys = DefaultHotkeys,
 	Language = Language
 }
@@ -538,23 +545,47 @@ local function update_bonuslocation_names()
 		end
 	end
 
-	for _, location in ipairs(BeetleLocations) do
-		if Config.Language == "zh_TW" then
-			table.insert(BonusLocationNames, location.name_zh_TW)
-		elseif Config.Language == "zh_CN" then
-			table.insert(BonusLocationNames, location.name_zh_CN)
-		else
-			table.insert(BonusLocationNames, location.name_EN)
+	if Config.LoadBeetleLocations then
+		for _, location in ipairs(BeetleLocations) do
+			if Config.Language == "zh_TW" then
+				table.insert(BonusLocationNames, location.name_zh_TW)
+			elseif Config.Language == "zh_CN" then
+				table.insert(BonusLocationNames, location.name_zh_CN)
+			else
+				table.insert(BonusLocationNames, location.name_EN)
+			end
 		end
 	end
 
-	for _, location in ipairs(SeekerLocations) do
-		if Config.Language == "zh_TW" then
-			table.insert(BonusLocationNames, location.name_zh_TW)
-		elseif Config.Language == "zh_CN" then
-			table.insert(BonusLocationNames, location.name_zh_CN)
-		else
-			table.insert(BonusLocationNames, location.name_EN)
+	if Config.LoadSeekerLocations then
+		for _, location in ipairs(SeekerLocations) do
+			if Config.Language == "zh_TW" then
+				table.insert(BonusLocationNames, location.name_zh_TW)
+			elseif Config.Language == "zh_CN" then
+				table.insert(BonusLocationNames, location.name_zh_CN)
+			else
+				table.insert(BonusLocationNames, location.name_EN)
+			end
+		end
+	end
+end
+
+local function update_bonuslocation_positions()
+	BonusLocationPositions = {}
+
+	for _, location in ipairs(BonusLocations) do
+		table.insert(BonusLocationPositions, location.position)
+	end
+
+	if Config.LoadBeetleLocations then
+		for _, location in ipairs(BeetleLocations) do
+			table.insert(BonusLocationPositions, location.position)
+		end
+	end
+
+	if Config.LoadSeekerLocations then
+		for _, location in ipairs(SeekerLocations) do
+			table.insert(BonusLocationPositions, location.position)
 		end
 	end
 end
@@ -573,12 +604,14 @@ local function update_language_labels()
 	end
 end
 
-local function update_language(language)
+local function update_language(language, languageIndex)
 	Config.Language = language
+	Config.SelectedLanguageIndex = languageIndex
 	save_config()
 	update_language_labels()
 	update_location_names()
 	update_bonuslocation_names()
+	update_bonuslocation_positions()
 end
 
 load_config()
@@ -590,6 +623,8 @@ update_language_labels()
 update_location_names()
 
 update_bonuslocation_names()
+
+update_bonuslocation_positions()
 
 -- Initialization Done
 
@@ -660,7 +695,7 @@ re.on_frame(function()
             local windowHeight = 455
             local centerX = (displaySize.x / 2)
             local centerTopY = (displaySize.y / 2)
-            
+
             imgui.set_next_window_pos(Vector2f.new(centerX, centerTopY), 0, Vector2f.new(0.5, 0.5))
             imgui.set_next_window_size(Vector2f.new(windowWidth, windowHeight), 0)
             WindowInitialized = true
@@ -738,10 +773,10 @@ re.on_draw_ui(function ()
         imgui.spacing()
 
         local languageChanged = false
-		languageChanged, SelectedLanguageIndex = imgui.combo("Language", SelectedLanguageIndex, Languages)
+		languageChanged, SelectedLanguageIndex = imgui.combo("Language", Config.SelectedLanguageIndex, Languages)
 
         if languageChanged then
-            update_language(Languages[SelectedLanguageIndex])
+            update_language(Languages[SelectedLanguageIndex], SelectedLanguageIndex)
         end
 
         if Config.Language == "zh_TW"  then imgui.push_font(font_zh_TW) end
@@ -795,8 +830,10 @@ re.on_draw_ui(function ()
             _, SelectedBonusLocationIndex = imgui.combo(" ", SelectedBonusLocationIndex, BonusLocationNames)
 
             imgui.same_line()
+            imgui.spacing()
+            imgui.same_line()
             if imgui.button(LabelTexts[6]) then
-                teleport(BonusLocations[SelectedBonusLocationIndex].position)
+                teleport(BonusLocationPositions[SelectedBonusLocationIndex])
             end
 
             imgui.spacing()
@@ -865,6 +902,34 @@ re.on_draw_ui(function ()
                 imgui.spacing()
                 imgui.tree_pop()
             end
+        end
+
+		imgui.spacing()
+        imgui.spacing()
+
+        if imgui.tree_node(LabelTexts[19]) then
+            imgui.spacing()
+            imgui.spacing()
+            local LoadBeetleLocationsChanged, LoadBeetleLocationsValue = imgui.checkbox(LabelTexts[20], Config.LoadBeetleLocations)
+            if LoadBeetleLocationsChanged then
+                Config.LoadBeetleLocations = LoadBeetleLocationsValue
+                save_config()
+				update_bonuslocation_names()
+				update_bonuslocation_positions()
+            end
+
+            imgui.spacing()
+            imgui.spacing()
+            local LoadSeekerLocationsChanged, LoadSeekerLocationsValue = imgui.checkbox(LabelTexts[21], Config.LoadSeekerLocations)
+            if LoadSeekerLocationsChanged then
+                Config.LoadSeekerLocations = LoadSeekerLocationsValue
+                save_config()
+				update_bonuslocation_names()
+				update_bonuslocation_positions()
+            end
+
+            imgui.spacing()
+            imgui.tree_pop()
         end
 
 		if not (Config.Language == "EN") then imgui.pop_font() end
