@@ -904,9 +904,6 @@ re.on_draw_ui(function ()
             end
         end
 
-		imgui.spacing()
-        imgui.spacing()
-
         if imgui.tree_node(LabelTexts[19]) then
             imgui.spacing()
             imgui.spacing()

@@ -13,6 +13,7 @@ local CharacterManager = sdk.get_managed_singleton("app.CharacterManager")
 local ConfigFilePath = "rthomasv3\\teleportation_config.json"
 
 local ShowTeleportWindow = false
+local SelectedLanguageIndex = 1
 local SelectedLocationIndex = 1
 local SelectedBonusLocationIndex = 1
 local SelectedCustomLocationIndex = 1
@@ -22,6 +23,7 @@ local RequireTeleportWindowOpen = true
 local PreventFerrystoneUsage = false
 local LoadBeetleLocations = true
 local LoadSeekerLocations = true
+local Language = "EN"
 
 local LocationNames = {}
 local BonusLocationNames = {}
@@ -398,10 +400,12 @@ local DefaultHotkeys = {
 
 local Config = {
     RequireTeleportWindowOpen = RequireTeleportWindowOpen,
+	SelectedLanguageIndex = SelectedLanguageIndex,
     CustomTeleportLocations = {},
 	LoadBeetleLocations = LoadBeetleLocations,
 	LoadSeekerLocations = LoadSeekerLocations,
     Hotkeys = DefaultHotkeys,
+	Language = Language
 }
 
 local function write_valuetype(parent_obj, offset, value)
