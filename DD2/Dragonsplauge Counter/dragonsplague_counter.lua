@@ -2,6 +2,7 @@ local re = re
 local sdk = sdk
 local draw = draw
 local imgui = imgui
+local json = json
 local Vector3f = Vector3f
 local Vector2f = Vector2f
 
@@ -11,6 +12,32 @@ local FontSize = 28
 local Font = imgui.load_font("times.ttf", FontSize)
 
 local PawnStatuses = {}
+
+local ShowCounterOnPawns = true
+local ConfigFilePath = "rthomasv3\\dragonsplague_counter_config.json"
+
+local Config = {
+    ShowCounterOnPawns = ShowCounterOnPawns
+}
+
+local function load_config()
+    local file = io.open(ConfigFilePath, "r")
+    if file then
+        file:close()
+        local status, data = pcall(json.load_file, ConfigFilePath)
+        if status and data then
+            Config = data
+        end
+    end
+end
+
+local function save_config()
+    pcall(json.dump_file, ConfigFilePath, Config)
+end
+
+load_config()
+
+-- Initialization Done
 
 local function UpdatePawnPossessionStatuses()
     PawnStatuses = {}
@@ -70,7 +97,7 @@ end
 re.on_frame(function()
     UpdatePawnPossessionStatuses()
 
-    if #PawnStatuses > 0 then
+    if #PawnStatuses > 0 and Config.ShowCounterOnPawns then
         imgui.push_font(Font)
 
         for _, pawnStatus in ipairs(PawnStatuses) do
@@ -88,6 +115,8 @@ re.on_draw_ui(function ()
         imgui.spacing()
 
         if #PawnStatuses > 0 then
+            imgui.spacing()
+
             imgui.begin_table("1", 2, nil, Vector2f.new(325, 100), 10.0)
             imgui.table_setup_column("Pawn Name")
             imgui.table_setup_column("Possession Level")
@@ -112,6 +141,17 @@ re.on_draw_ui(function ()
             end
 
             imgui.end_table()
+
+            imgui.spacing()
+            imgui.spacing()
+
+            local showCounterChanged, showCounterValue = imgui.checkbox("Show counter on pawns", Config.ShowCounterOnPawns)
+            if showCounterChanged then
+                Config.ShowCounterOnPawns = showCounterValue
+                save_config()
+            end
+
+            imgui.spacing()
         else
             imgui.text("No Pawns Found")
         end
